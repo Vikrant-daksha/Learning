@@ -40,8 +40,8 @@ def add_to_list():
 
 
 root = tk.Tk()
-root.title("Array of Tasks")
-root.geometry('250x100')
+root.title("To Do List")
+root.geometry('450x300')
 
 frame = ttk.Frame(root)
 label = ttk.Label(frame, text = "Task List", font = "Arial, 18" )
