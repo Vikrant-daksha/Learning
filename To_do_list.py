@@ -4,7 +4,7 @@ from tkinter import ttk
 
 task_to_do = []
 task_done = []
-#if these variable is kept unchecked it will take more space as the list of items keep increasing how do i solve it?
+#if these variable are kept unchecked it will take more space as the list of items keep increasing how do i solve it?
 
 def delete():
     #to check whether the item is selected and resides in the lists
