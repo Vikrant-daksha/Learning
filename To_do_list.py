@@ -73,14 +73,14 @@ label_task = ttk.Label(unfinished_task_frame, text = "Unfinished Task", font = "
 label_task.pack(pady = 5)
 unfinished_task_list = tk.Listbox(unfinished_task_frame)
 unfinished_task_list.pack()
-unfinished_task_frame.pack(pady = 10)
+unfinished_task_frame.grid(row=0, column=1, padx = 15)
 
 finished_task_frame = ttk.Frame(output_frame)
 label_task = ttk.Label(finished_task_frame, text = "Finished Task", font = "Arial, 12")
 label_task.pack(pady = 5)
 finished_task_list = tk.Listbox(finished_task_frame)
 finished_task_list.pack()
-finished_task_frame.pack(pady = 10)
+finished_task_frame.grid(row=0, column=2, padx = 15)
 
 output_frame.pack()
 
