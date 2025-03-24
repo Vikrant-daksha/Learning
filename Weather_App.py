@@ -51,7 +51,7 @@ def weather():
 
 root = tk.Tk()
 root.title("Weather App")
-root.geometry('300x250')
+root.geometry('300x350')
 
 
 cloudy_img = tk.PhotoImage(file = "./weather_app_assets/cloud.png")
