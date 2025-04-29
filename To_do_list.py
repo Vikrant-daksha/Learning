@@ -1,10 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
-
 task_to_do = []
 task_done = []
-#if these variable are kept unchecked it will take more space as the list of items keep increasing how do i solve it?
 
 def delete():
     #to check whether the item is selected and resides in the lists
@@ -24,7 +22,7 @@ def done():
     if unfinished_task_list.curselection():
         task_to_append = unfinished_task_list.get(unfinished_task_list.curselection())
         task_done.append(task_to_append)
-        finished_task_list.insert(tk.END, task_done[len(task_done)- 1])
+        finished_task_list.insert(tk.END, task_done[-1])
         delete()
         warn.config(text = "Task Added to Finished Task") #to display information about the task being operated
     elif finished_task_list.curselection():
@@ -34,15 +32,18 @@ def done():
 
 def add_to_list():
     #simply add to list of unfinished 
-    task = input_task.get()
-    task_to_do.append(task)
-    unfinished_task_list.insert(tk.END, task_to_do[len(task_to_do) - 1])
-
+    if task_entry.get() != "":
+        task = input_task.get()
+        task_to_do.append(task)
+        unfinished_task_list.insert(tk.END, task_to_do[-1])
+        input_task.set("")
+    else:
+        warn.config(text = "Enter a Task")
 
 
 root = tk.Tk()
 root.title("To Do List")
-root.geometry('450x300')
+root.geometry('600x350')
 
 frame = ttk.Frame(root)
 label = ttk.Label(frame, text = "Task List", font = "Arial, 18" )
@@ -72,15 +73,21 @@ output_frame = ttk.Frame(root)
 unfinished_task_frame = ttk.Frame(output_frame)
 label_task = ttk.Label(unfinished_task_frame, text = "Unfinished Task", font = "Arial, 12")
 label_task.pack(pady = 5)
-unfinished_task_list = tk.Listbox(unfinished_task_frame)
-unfinished_task_list.pack()
+unfinished_task_list = tk.Listbox(unfinished_task_frame, justify = "center", width = 40)
+unfinished_task_list.pack(side ='left', fill = "both", expand = True)
+unfinished_task_scrollbar = tk.Scrollbar(unfinished_task_frame, orient = "vertical", command = unfinished_task_list.yview)
+unfinished_task_scrollbar.pack(side = 'right', fill = "y")
+unfinished_task_list.config(yscrollcommand = unfinished_task_scrollbar.set)
 unfinished_task_frame.grid(row=0, column=1, padx = 15)
 
 finished_task_frame = ttk.Frame(output_frame)
 label_task = ttk.Label(finished_task_frame, text = "Finished Task", font = "Arial, 12")
 label_task.pack(pady = 5)
-finished_task_list = tk.Listbox(finished_task_frame)
-finished_task_list.pack()
+finished_task_list = tk.Listbox(finished_task_frame, justify = "center", width = 40)
+finished_task_list.pack(side ='left', fill = "both", expand = True)
+finished_task_scrollbar = tk.Scrollbar(finished_task_frame, orient = "vertical", command = finished_task_list.yview)
+finished_task_scrollbar.pack(side = 'right', fill = "y")
+finished_task_list.config(yscrollcommand = finished_task_scrollbar.set)
 finished_task_frame.grid(row=0, column=2, padx = 15)
 
 output_frame.pack()
