@@ -1,8 +1,9 @@
 import requests
+import os
 import tkinter as tk
 from tkinter import ttk
 
-api_key = '359ba8e8885e9693cdd234f0ea7bc9c8'
+api_key = os.getenv.API_KEY
 
 def weather():
     user_city = user_input_city.get()
@@ -24,8 +25,10 @@ def weather():
             weather_temperature = weather_info.json()['main']['temp']
 
             city_name_label.config(text = f"{city_name}")
+            
+            tempera = round(weather_temperature - 273.15)
 
-            current_temp.config(text = f"Current Temperature: {weather_temperature}")
+            current_temp.config(text = f"Current Temperature: {tempera} °C")
             weather_descp.config(text = f"Weather Description: {weather_description}")
 
             if weather_temperature >= 320:
